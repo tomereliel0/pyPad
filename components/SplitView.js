@@ -4,17 +4,18 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions, PanResponder, Animated } from 'react-native';
 import Explorer from './Explorer';
 import TextEditor from './TextEditor';
+import Toolbar from './Toolbar';
 
 export default class SplitView extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             offset          : 0,
             leftWidth       : 40,
             rightWidth      : 40,
-            deviceWidth     : Dimensions.get('screen').width,
+            deviceWidth     : Dimensions.get('window').width,
+            spaceHight           : Dimensions.get('window').height - 30,
             isDividerClicked: false,
 
             pan             : new Animated.ValueXY()
@@ -58,27 +59,29 @@ export default class SplitView extends Component {
 
                 {/* Top View */}
                 <Animated.View 
-                    style       = {[{backgroundColor: 'pink', minWidth: 40, flex: 1}, {width: this.state.leftWidth}]}
+                    style       = {[{backgroundColor: 'pink', minWidth: 40, flex: 1}, {width: this.state.leftWidth, height: this.state.spaceHight}]}
 
                 >
                  {/* this.props.childone?this.props.childone:null */}
-                 <Explorer></Explorer>
+                 {/* <Explorer></Explorer> */}
+                 {this.props.leftView}
                 </Animated.View>
 
                 {/* Divider */}
                 <View 
-                    style={[{width: 10}, this.state.isDividerClicked ? {backgroundColor: '#666'} : {backgroundColor: '#e2e2e2'}]} 
+                    style={[{width: 10, height: this.state.spaceHight}, this.state.isDividerClicked ? {backgroundColor: '#666'} : {backgroundColor: '#e2e2e2'}]} 
                     {...this._panResponder.panHandlers}
                 >
                 </View>
 
                 {/* Bottom View */}
                 <Animated.View 
-                    style={[{backgroundColor: 'green', minWidth: 40}, {width: this.state.rightWidth}]} 
+                    style={[{backgroundColor: 'green', minWidth: 40}, {width: this.state.rightWidth, height: this.state.spaceHight}]} 
                    
                 >
                  {/* this.props.childTwo?this.props.childTwo:null */}
-                 <TextEditor></TextEditor>
+                 {/* <TextEditor></TextEditor> */}
+                 {this.props.rightView}
                 </Animated.View>
             </View>
         )
@@ -88,6 +91,6 @@ export default class SplitView extends Component {
 const styles = StyleSheet.create({
     content         : {
         flex        : 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
 })

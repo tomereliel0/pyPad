@@ -1,21 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Button from 'react-bootstrap/Button';
+
+
 
 const Toolbar = () => {
   return (
-    <View style={styles.container}>
-    <Text>This gonna be the Toolbar</Text>
-    </View>
+/*     <Text>Hello</Text> */
+      <Button>Press</Button>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
+  table: {
+/*     flex: 1, */
+/*     backgroundColor: 'green',
+    alignItems: 'flex-start',
+    height : 30 */
   },
 });
 

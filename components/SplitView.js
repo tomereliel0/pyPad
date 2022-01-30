@@ -15,7 +15,7 @@ export default class SplitView extends Component {
             leftWidth       : 40,
             rightWidth      : 40,
             deviceWidth     : Dimensions.get('window').width,
-            spaceHight           : Dimensions.get('window').height - 30,
+            spaceHight           : Dimensions.get('window').height - 55,
             isDividerClicked: false,
 
             pan             : new Animated.ValueXY()
@@ -59,7 +59,7 @@ export default class SplitView extends Component {
 
                 {/* Top View */}
                 <Animated.View 
-                    style       = {[{backgroundColor: 'pink', minWidth: 40, flex: 1}, {width: this.state.leftWidth, height: this.state.spaceHight}]}
+                    style       = {[{backgroundColor: 'white', minWidth: 150, flex: 1}, {width: this.state.leftWidth, height: this.state.spaceHight}]}
 
                 >
                  {/* this.props.childone?this.props.childone:null */}
@@ -76,7 +76,7 @@ export default class SplitView extends Component {
 
                 {/* Bottom View */}
                 <Animated.View 
-                    style={[{backgroundColor: 'green', minWidth: 40}, {width: this.state.rightWidth, height: this.state.spaceHight}]} 
+                    style={[{backgroundColor: 'white', minWidth: 40}, {width: this.state.rightWidth, height: this.state.spaceHight}]} 
                    
                 >
                  {/* this.props.childTwo?this.props.childTwo:null */}

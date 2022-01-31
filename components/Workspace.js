@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,TouchableWithoutFeedback,Keyboard } from 'react-native';
 import Explorer from './Explorer';
 import SplitView from './SplitView';
 import TextEditor from './TextEditor';
@@ -11,18 +11,21 @@ import Playground from './Playground';
 
 const Workspace = () => {
   return ( 
-  <View style={styles.container}>
+  <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+  <View style={styles.container} >
     <Toolbar />
     <SplitView 
       /* rightView = {<TextEditor />}  */
       rightView = {<VerSplitView 
                   topView = {<TextEditor />} bottomView = {<Playground />}/>}
       leftView = {<Explorer />}/>
-  </View>);
+  </View>
+  </TouchableWithoutFeedback>
+  );
 }
 const styles = StyleSheet.create({
   container:{
-    backgroundColor : '#470000',
+    backgroundColor : '#666666',
   },
 });
 

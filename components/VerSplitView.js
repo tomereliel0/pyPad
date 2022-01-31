@@ -8,8 +8,8 @@ export default class VerSplitView extends Component {
 
         this.state = {
             offset          : 0,
-            topHeight       : '85%', // min height for top pane header
-            bottomHeight    : '15%', // min height for bottom pane header,
+            topHeight       : '80%', // min height for top pane header
+            bottomHeight    : '20%', // min height for bottom pane header,
             deviceHeight    : Dimensions.get('window').height,
             isDividerClicked: false,
 
@@ -20,6 +20,15 @@ export default class VerSplitView extends Component {
             onMoveShouldSetResponderCapture: () => true,
             onMoveShouldSetPanResponderCapture: () => true,
 
+            onStartShouldSetPanResponder: (e, gestureState) => {
+                this.setState({
+                    offset: e.nativeEvent.pageY,
+                    isDividerClicked: true
+                    
+                })
+                return true;
+            },
+            
             // Initially, set the Y position offset when touch start
             onPanResponderGrant: (e, gestureState) => {
                 this.setState({
@@ -63,7 +72,7 @@ export default class VerSplitView extends Component {
 
                 {/* Divider */}
                 <View 
-                    style={[{height: 10}, this.state.isDividerClicked ?  {backgroundColor: '#3b3b3b'} : {backgroundColor: '#666666'}]} 
+                    style={[{height: 15}, this.state.isDividerClicked ?  {backgroundColor: '#3b3b3b'} : {backgroundColor: '#666666'}]} 
                     {...this._panResponder.panHandlers}
                 >
                 </View>

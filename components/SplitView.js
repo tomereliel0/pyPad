@@ -25,6 +25,16 @@ export default class SplitView extends Component {
             onMoveShouldSetResponderCapture: () => true,
             onMoveShouldSetPanResponderCapture: () => true,
 
+            onStartShouldSetPanResponder: (e, gestureState) => {
+                this.setState({
+                    offset: e.nativeEvent.pageX,
+                    isDividerClicked: true
+                    
+                })
+                return true;
+            },
+            
+
             // Initially, set the X position offset when touch start
             onPanResponderGrant: (e, gestureState) => {
                 this.setState({
@@ -48,7 +58,7 @@ export default class SplitView extends Component {
                     offset: e.nativeEvent.pageX,
                     isDividerClicked: false
                 })
-            }
+            },
         });
     }
 
@@ -69,7 +79,7 @@ export default class SplitView extends Component {
 
                 {/* Divider */}
                 <View 
-                    style={[{width: 10, height: this.state.spaceHight}, this.state.isDividerClicked ? {backgroundColor: '#3b3b3b'} : {backgroundColor: '#666666'}]} 
+                    style={[{width: 15, height: this.state.spaceHight}, this.state.isDividerClicked ? {backgroundColor: '#3b3b3b'} : {backgroundColor: '#666666'}]} 
                     {...this._panResponder.panHandlers}
                 >
                 </View>

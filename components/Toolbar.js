@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 5,
     alignItems: 'flex-end',
-    backgroundColor : '#470000',
+    backgroundColor : '#666666',
   },
   table: {
 /*     flex: 1, */

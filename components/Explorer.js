@@ -13,7 +13,7 @@ const Explorer = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#470000',
     alignItems: 'center',
     justifyContent: 'center',
   },

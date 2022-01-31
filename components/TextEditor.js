@@ -16,14 +16,13 @@ const TextEditor = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
   input: {
     flex: 1,
-    margin: 2,
-    borderWidth: 1,
+    borderWidth: 3,borderColor:'grey',
+    backgroundColor: '#1f1f1f',
   },
 });
 

@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
   container:{
     marginHorizontal: 10,
     marginVertical: 5,
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
+    backgroundColor : '#470000',
   },
   table: {
 /*     flex: 1, */

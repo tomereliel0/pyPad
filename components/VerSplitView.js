@@ -1,21 +1,16 @@
-/* source:      https://github.com/brucelin0325/react-native-resizable-flex-panes */
-
 import React, { Component } from 'react'; 
 import { StyleSheet, View, Dimensions, PanResponder, Animated } from 'react-native';
-import Explorer from './Explorer';
-import TextEditor from './TextEditor';
-import Toolbar from './Toolbar';
 
-export default class SplitView extends Component {
+export default class VerSplitView extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             offset          : 0,
-            leftWidth       : '20%',
-            rightWidth      : '80%',
-            deviceWidth     : Dimensions.get('window').width,
-            spaceHight           : Dimensions.get('window').height - 55,
+            topHeight       : '85%', // min height for top pane header
+            bottomHeight    : '15%', // min height for bottom pane header,
+            deviceHeight    : Dimensions.get('window').height,
             isDividerClicked: false,
 
             pan             : new Animated.ValueXY()
@@ -25,10 +20,10 @@ export default class SplitView extends Component {
             onMoveShouldSetResponderCapture: () => true,
             onMoveShouldSetPanResponderCapture: () => true,
 
-            // Initially, set the X position offset when touch start
+            // Initially, set the Y position offset when touch start
             onPanResponderGrant: (e, gestureState) => {
                 this.setState({
-                    offset: e.nativeEvent.pageX,
+                    offset: e.nativeEvent.pageY,
                     isDividerClicked: true
                 })
             },
@@ -37,15 +32,15 @@ export default class SplitView extends Component {
             onPanResponderMove: (e, gestureState) => {
 
                 this.setState({
-                    rightWidth    : gestureState.moveX > (this.state.deviceWidth - 40) ? 40 : this.state.deviceWidth - gestureState.moveX,
-                    offset: e.nativeEvent.pageX
+                    bottomHeight    : gestureState.moveY > (this.state.deviceHeight - 40) ? 40 : this.state.deviceHeight - gestureState.moveY,
+                    offset: e.nativeEvent.pageY
                 })
             },
 
             onPanResponderRelease: (e, gestureState) => {
                 // Do something here for the touch end event
                 this.setState({
-                    offset: e.nativeEvent.pageX,
+                    offset: e.nativeEvent.pageY,
                     isDividerClicked: false
                 })
             }
@@ -59,29 +54,27 @@ export default class SplitView extends Component {
 
                 {/* Top View */}
                 <Animated.View 
-                    style       = {[{backgroundColor: 'white', minWidth: 150, flex: 1}, {width: this.state.leftWidth, height: this.state.spaceHight}]}
+                    style       = {[{ minHeight: 40, flex: 1}, {height: this.state.topHeight}]}
 
                 >
                  {/* this.props.childone?this.props.childone:null */}
-                 {/* <Explorer></Explorer> */}
-                 {this.props.leftView}
+                 {this.props.topView}
                 </Animated.View>
 
                 {/* Divider */}
                 <View 
-                    style={[{width: 10, height: this.state.spaceHight}, this.state.isDividerClicked ? {backgroundColor: '#3b3b3b'} : {backgroundColor: '#666666'}]} 
+                    style={[{height: 10}, this.state.isDividerClicked ?  {backgroundColor: '#3b3b3b'} : {backgroundColor: '#666666'}]} 
                     {...this._panResponder.panHandlers}
                 >
                 </View>
 
                 {/* Bottom View */}
                 <Animated.View 
-                    style={[{backgroundColor: 'white', minWidth: 40}, {width: this.state.rightWidth, height: this.state.spaceHight}]} 
-                   
+                    style={[{ minHeight: 40}, {height: this.state.bottomHeight}]} 
+
                 >
                  {/* this.props.childTwo?this.props.childTwo:null */}
-                 {/* <TextEditor></TextEditor> */}
-                 {this.props.rightView}
+                 {this.props.bottomView}
                 </Animated.View>
             </View>
         )
@@ -91,6 +84,6 @@ export default class SplitView extends Component {
 const styles = StyleSheet.create({
     content         : {
         flex        : 1,
-        flexDirection: 'row',
+        flexDirection: 'column'
     },
 })

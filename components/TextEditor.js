@@ -12,7 +12,6 @@ const TextEditor = () => {
         multiline={true}
         onScroll={Keyboard.dismiss}
         keyboardShouldPersistTaps='handled'
-        
       />
 
   );
@@ -28,6 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     /* borderWidth: 3,borderColor:'grey', */
     backgroundColor: '#1f1f1f',
+    color: 'white',
   },
 });
 

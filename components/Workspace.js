@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View,TouchableWithoutFeedback,Keyboard } from 'react-native';
+import { StyleSheet, Text, View,TouchableWithoutFeedback,Keyboard, Platform } from 'react-native';
 import Explorer from './Explorer';
 import SplitView from './SplitView';
 import TextEditor from './TextEditor';
@@ -10,8 +10,11 @@ import Playground from './Playground';
 
 
 const Workspace = () => {
+  function dismissKeyboard() {
+    if (Platform.OS != "web"){ Keyboard.dismiss(); } }
+
   return ( 
-  <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+  <TouchableWithoutFeedback onPress={() => dismissKeyboard()} accessible={false}>
   <View style={styles.container} >
     <Toolbar />
     <SplitView 
